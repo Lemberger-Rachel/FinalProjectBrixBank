@@ -1,0 +1,12 @@
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\bin\Debug\netcoreapp3.1\BrixBank.Services.deps.json
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\bin\Debug\netcoreapp3.1\BrixBank.Services.dll
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\obj\Debug\netcoreapp3.1\BrixBank.Services.csprojAssemblyReference.cache
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\obj\Debug\netcoreapp3.1\BrixBank.Services.AssemblyInfoInputs.cache
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\obj\Debug\netcoreapp3.1\BrixBank.Services.AssemblyInfo.cs
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\bin\Debug\netcoreapp3.1\BrixBank.Services.runtimeconfig.json
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\bin\Debug\netcoreapp3.1\BrixBank.Services.runtimeconfig.dev.json
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\obj\Debug\netcoreapp3.1\BrixBank.Services.genruntimeconfig.cache
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\bin\Debug\netcoreapp3.1\BrixBank.Services.pdb
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\obj\Debug\netcoreapp3.1\BrixBank.Services.dll
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\obj\Debug\netcoreapp3.1\BrixBank.Services.pdb
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Services\obj\Debug\netcoreapp3.1\BrixBank.Services.csproj.CoreCompileInputs.cache

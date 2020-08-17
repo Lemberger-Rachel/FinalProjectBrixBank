@@ -1,0 +1,10 @@
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank\bin\Debug\netcoreapp3.1\BrixBank.exe
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank\obj\Debug\netcoreapp3.1\BrixBank.csprojAssemblyReference.cache
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank\obj\Debug\netcoreapp3.1\BrixBank.AssemblyInfoInputs.cache
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank\obj\Debug\netcoreapp3.1\BrixBank.AssemblyInfo.cs
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank\obj\Debug\netcoreapp3.1\BrixBank.RazorTargetAssemblyInfo.cache
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank\obj\Debug\netcoreapp3.1\staticwebassets\BrixBank.StaticWebAssets.Manifest.cache
+C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank\obj\Debug\netcoreapp3.1\staticwebassets\BrixBank.StaticWebAssets.xml
