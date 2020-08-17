@@ -34,6 +34,8 @@ namespace BrixBank
             services.AddDbContext<BrixBankContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BrixBankContext")));
             services.AddScoped<IRuleService, RuleService>();
             services.AddScoped<IRuleRepository, RuleRepository>();
+            services.AddScoped<ILoanRequestServies, LoanRequestServies>();
+            services.AddScoped<ILoanRequestRepository,LoanRequestRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             //services.AddSwaggerGen(setupAction =>
             //{

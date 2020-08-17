@@ -1,12 +1,14 @@
 ﻿using BrixBank.Data.Entities;
+using BrixBank.Services.Interfaces;
 using BrixBank.Services.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace BrixBank.Data.Repositories
 {
-   public class LoanRequestRepository
+   public class LoanRequestRepository: ILoanRequestRepository
     {
 
         private readonly BrixBankContext _context;
@@ -66,14 +68,11 @@ namespace BrixBank.Data.Repositories
                 return Eval(data, root.Left) && Eval(data, root.Right);
             }
         }
-        public bool Reqest(LoanRequestModel loanRequestModel)
+    
+       public async Task<bool> Reqest(LoanRequestModel loanRequestModel)
         {
             try
             {
-                //loanRequestModel.GetType().GetProperties().FirstOrDefault(p=>p.GetCustomAttributes())
-                //  dictionary.Add(item.Kind, loanRequestModel.Age);
-                //  dictionary.Add(item.Kind, loanRequestModel.Salary);
-                //  dictionary.Add(item.Kind, (int)loanRequestModel.GetCitizen);
                 var listRule =new List<Rules>();
                 var listRuleCriterion = new Dictionary<string, object>();
                 var dictionary = new Dictionary<string, int>();
@@ -83,7 +82,7 @@ namespace BrixBank.Data.Repositories
                     if (p.GetCustomAttribute<Criterion>() != null)
                         listRuleCriterion.Add(p.Name, p.GetValue(loanRequestModel));
                     });
-               
+                Customer customer = _context.Customers.FirstOrDefault(c => c.CustomerId == loanRequestModel.LoanSupplied);
                 foreach (var item in _context.Rules)
                 {
                     if (item.CustomerId2.CustomerId == loanRequestModel.LoanSupplied)
@@ -102,5 +101,7 @@ namespace BrixBank.Data.Repositories
                 return false;
             }
         }
+
+        
     }
 }

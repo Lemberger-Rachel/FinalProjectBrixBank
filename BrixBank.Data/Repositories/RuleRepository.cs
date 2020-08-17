@@ -23,6 +23,8 @@ namespace BrixBank.Data.Repositories
             try
             {
                 Dictionary<string, string> dict = new Dictionary<string, string>();
+                string custId="";
+                var listRule = new List<string>();
                 //Lets open the existing excel file and read through its content . Open the excel using openxml sdk
                 using (SpreadsheetDocument doc = SpreadsheetDocument.Open(@"C:\Users\RLemberger\Documents\Brix\FinalProject\BrixBank\BrixBank.Data\bin\Debug\netcoreapp3.1\book1.xlsx", false))
                 {
@@ -53,7 +55,8 @@ namespace BrixBank.Data.Repositories
                                         if (Int32.TryParse(thecurrentcell.InnerText, out id))
                                         {
                                             SharedStringItem item = workbookPart.SharedStringTablePart.SharedStringTable.Elements<SharedStringItem>().ElementAt(id);
-                                            dict.Add(item.InnerText.ToString(), thesheet.Name);
+                                            listRule.Add(item.InnerText.ToString());
+                                            custId = thesheet.Name;
                                             if (item.Text != null)
                                             {
                                                 //code to take the string value  
@@ -82,29 +85,24 @@ namespace BrixBank.Data.Repositories
                         excelResult.Append("");
                     }
                 }
-                foreach (var item in dict)
+                Customer customer = _context.Customers.FirstOrDefault(c => c.Name == custId);
+                if (customer == null)
                 {
-                    Customer customer = new Customer();
-                    customer.Name = item.Value;
-                    if (_context.Customers.FirstOrDefault(c => c.Name == item.Value)==null)
-                    {
-                        _context.Customers.Add(customer);
-                        _context.SaveChanges();
-                        
-                    }
-                    customer.CustomerId = _context.Customers.First(c => c.Name == customer.Name).CustomerId;
-                    string itemParse = ParseExp(item.Key);
-                    string[] collection = itemParse.Split(';');
+                     customer = new Customer();
+                     customer.Name = custId;
+                    _context.Customers.Add(customer);
+                    _context.SaveChanges();
+                }
+                foreach (var item in listRule)
+                {
                     Rules rule = new Rules();
+                    string itemParse = ParseExp(item);
+                    string[] collection = itemParse.Split(';');
                     rule.Kind = collection[0];
                     rule.Operator = collection[1];
                     rule.Output = Int32.Parse(collection[2]);
                     rule.Law = itemParse;
-                    //if (_context.Rules.FirstOrDefault(c=>c.CustomerId2.Name==item.Value)==null)
-                    //{
-                    //    rule.CustomerId2 = new Customer();
-                    //}
-                    rule.CustomerId2= customer;
+                    rule.CustomerId2 = customer;
                     _context.Rules.Add(rule);
                     _context.SaveChanges();
                 }
