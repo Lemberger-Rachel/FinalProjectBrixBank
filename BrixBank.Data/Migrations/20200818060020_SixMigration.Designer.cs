@@ -4,14 +4,16 @@ using BrixBank.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BrixBank.Data.Migrations
 {
     [DbContext(typeof(BrixBankContext))]
-    partial class BrixBankContextModelSnapshot : ModelSnapshot
+    [Migration("20200818060020_SixMigration")]
+    partial class SixMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

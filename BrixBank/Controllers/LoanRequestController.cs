@@ -27,7 +27,6 @@ namespace BrixBank.Controllers
         public void TryMe()
         {
         
-           
         } 
         [HttpPost]
         public async Task<bool> LoanRequestFor([FromBody] LoanRequestDTO loanRequestDTO)

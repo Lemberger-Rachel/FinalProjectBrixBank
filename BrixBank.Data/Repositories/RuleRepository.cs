@@ -38,7 +38,6 @@ namespace BrixBank.Data.Repositories
                     {
                         excelResult.AppendLine("Excel Sheet Name : " + thesheet.Name);
                         //statement to get the worksheet object by using the sheet id  
-
                         Worksheet theWorksheet = ((WorksheetPart)workbookPart.GetPartById(thesheet.Id)).Worksheet;
                         SheetData thesheetdata = (SheetData)theWorksheet.GetFirstChild<SheetData>();
                         foreach (Row thecurrentrow in thesheetdata)
@@ -79,17 +78,28 @@ namespace BrixBank.Data.Repositories
                                     excelResult.Append(Convert.ToInt16(thecurrentcell.InnerText) + " ");
                                 }
                             }
-
                             excelResult.AppendLine();
                         }
                         excelResult.Append("");
                     }
                 }
+                InsertToDB(custId, listRule);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void InsertToDB(string custId, List<string> listRule)
+        {
+            try
+            {
                 Customer customer = _context.Customers.FirstOrDefault(c => c.Name == custId);
                 if (customer == null)
                 {
-                     customer = new Customer();
-                     customer.Name = custId;
+                    customer = new Customer();
+                    customer.Name = custId;
                     _context.Customers.Add(customer);
                     _context.SaveChanges();
                 }
@@ -109,8 +119,10 @@ namespace BrixBank.Data.Repositories
             }
             catch (Exception e)
             {
+
                 throw e;
             }
+            
         }
 
         public static string ParseExp(string expr)

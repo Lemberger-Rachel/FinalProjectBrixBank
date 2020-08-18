@@ -1,14 +1,14 @@
 ﻿using BrixBank.Data.Entities;
 using BrixBank.Services.Interfaces;
 using BrixBank.Services.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace BrixBank.Data.Repositories
 {
-   public class LoanRequestRepository: ILoanRequestRepository
+    public class LoanRequestRepository : ILoanRequestRepository
     {
 
         private readonly BrixBankContext _context;
@@ -35,7 +35,6 @@ namespace BrixBank.Data.Repositories
             return ruleNode;
         }
 
-
         public bool EvalRule(int dataValue, Rules rule)
         {
             switch (rule.Operator)
@@ -54,54 +53,66 @@ namespace BrixBank.Data.Repositories
                     return false;
             }
         }
-
         public bool Eval(Dictionary<string, int> data, RuleNode root)
         {
             var rule = root.rule as Rules;
             if (rule != null)
             {
                 return EvalRule(data[rule.Kind], rule);
-
             }
             else
             {
                 return Eval(data, root.Left) && Eval(data, root.Right);
             }
         }
-    
-       public async Task<bool> Reqest(LoanRequestModel loanRequestModel)
+        public async Task<bool> Reqest(LoanRequestModel loanRequestModel)
         {
             try
             {
-                var listRule =new List<Rules>();
-                var listRuleCriterion = new Dictionary<string, object>();
-                var dictionary = new Dictionary<string, int>();
-                //list for criterion
-                loanRequestModel.GetType().GetProperties().ToList().
-                    ForEach(p => {
-                    if (p.GetCustomAttribute<Criterion>() != null)
-                        listRuleCriterion.Add(p.Name, p.GetValue(loanRequestModel));
-                    });
+                var listRule = new List<Rules>();
                 Customer customer = _context.Customers.FirstOrDefault(c => c.CustomerId == loanRequestModel.LoanSupplied);
-                foreach (var item in _context.Rules)
-                {
-                    if (item.CustomerId2.CustomerId == loanRequestModel.LoanSupplied)
+                    foreach (var item in _context.Rules)
                     {
-                        dictionary.Add(item.Kind, dictionary[item.Kind]);
-                        listRule.Add(item);
+                    if (item.CustomerId2!=null&& customer.CustomerId == loanRequestModel.LoanSupplied){
+                            listRule.Add(item);
+                        }
                     }
-                }
-                RuleNode tree = BuidlTree(listRule);
-                bool return1 = Eval(dictionary, tree);
-
-                return true;
+                RuleNode treeRule = BuidlTree(listRule);
+                return Eval(loanRequestModel.dictionaryData, treeRule);
             }
-            catch
+            catch (Exception e)
             {
-                return false;
+                throw e;
             }
         }
 
-        
+
     }
 }
+//try
+//            {
+//                var listRule =new List<Rules>();
+//                //var listRuleCriterion = new Dictionary<string, object>();
+//                var dictionary = new Dictionary<string, int>();
+//                //list for criterion
+
+//                //loanRequestModel.GetType().GetProperties().ToList().
+//                //    ForEach(p => {
+//                //    if (p.GetCustomAttribute<Criterion>() != null)
+//                //        listRuleCriterion.Add(p.Name, p.GetValue(loanRequestModel));
+//                //    });
+
+//                Customer customer = _context.Customers.FirstOrDefault(c => c.CustomerId == loanRequestModel.LoanSupplied);
+//                foreach (var item in _context.Rules)
+//                {
+//                    if (item.CustomerId2.CustomerId == loanRequestModel.LoanSupplied)
+//                    {
+//                        //dictionary.Add(item.Kind, dictionary[item.Kind]);
+//                        listRule.Add(item);
+//                    }
+//                }
+//                RuleNode tree = BuidlTree(listRule);
+//                bool return1 = Eval(dictionary, tree);
+
+//                return true;
+//            }

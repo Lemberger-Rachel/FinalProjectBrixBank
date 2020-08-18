@@ -1,4 +1,5 @@
 ﻿using BrixBank.Data.Entities;
+using System.Collections.Generic;
 
 namespace BrixBank.webApi.DTO
 {
@@ -8,9 +9,10 @@ namespace BrixBank.webApi.DTO
         public string LoanRequestrId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Salary { get; set; }
-        public int Age { get; set; }
-        public Citizen GetCitizen { get; set; }
+        //public int Salary { get; set; }
+        //public int Age { get; set; }
+        //public Citizen GetCitizen { get; set; }
+        public Dictionary<string, int> dictionaryData { get; set; }
         public int LoanSupplied { get; set; }
 
     }
